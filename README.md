@@ -1,4 +1,6 @@
 # Supplementary Material for "Structural basis for FcµR recognition of IgM"
+## Citation
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21247258.svg)](https://doi.org/10.5281/zenodo.21247258)
 
 This directory contains supplementary information, source data, analysis scripts,
 manuscript figures, and FoldX output files accompanying the manuscript.
