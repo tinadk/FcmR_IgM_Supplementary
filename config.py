@@ -1,5 +1,3 @@
-
-# config.py
 #!/usr/bin/env python3
 """
 Global configuration for MD simulation analysis.
@@ -27,7 +25,7 @@ COLORS = {
 }
 
 # ---------- Plotting parameters ----------
-DPI = 1600
+DPI = 1400
 FONT_FAMILY = 'Arial'
 FONT_SIZE = 9
 
@@ -53,6 +51,10 @@ TIME_MAX_NS = 200.0
 
 # ---------- External data directories ----------
 PDB_DIR = Path("/Users/tina/PycharmProjects/PythonProject/source_file")
+
+# ---------- MSM & TICA data directories (simplified Zenodo structure) ----------
+MSM_DIR = BASE_DIR / "msm"
+TICA_DIR = BASE_DIR / "tica"
 
 # ---------- PDB structure assignments ----------
 # Each entry provides:
