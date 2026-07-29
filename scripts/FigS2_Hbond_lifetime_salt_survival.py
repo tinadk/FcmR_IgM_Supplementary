@@ -7,7 +7,7 @@ Exports:
   - lifetimes (τ) as Excel
   - combined raw survival curves (long‑format CSV)
   - separate wide‑format CSV/Excel for each interaction type
-All outputs saved to output/figS2_Hbond_salt_survival/
+All outputs saved to output/FigS2_Hbond_salt_survival/
 """
 
 import sys
