@@ -53,7 +53,7 @@ for sys, arr in DATA.items():
 
 if all_rows:
     # Combined CSV
-    combined_csv = OUTPUT_DIR / 'Supplementary_FigS4_PCA_FEL_2x2_data.csv'
+    combined_csv = OUTPUT_DIR / 'FigS4_PCA_FEL_2x2.csv'
     with open(combined_csv, 'w') as f:
         f.write('System,PC1,PC2\n')
         for r in all_rows:

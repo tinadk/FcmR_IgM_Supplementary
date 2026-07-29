@@ -38,20 +38,20 @@ t_scale = -1.0 / np.log(spec[:20]) * 0.1                 # first 20 timescales (
 # Implied timescales
 its_header = 'lag_ns,' + ','.join(f'ITS{i+1}' for i in range(its_ns.shape[1]))
 its_csv = np.column_stack([lags, its_ns])
-np.savetxt(OUTPUT_DIR / 'Supplementary_FigS5_ITS.csv', its_csv, delimiter=',',
+np.savetxt(OUTPUT_DIR / 'FigS5_ITS.csv', its_csv, delimiter=',',
            header=its_header, comments='', fmt='%.6f')
 
 # CK errors
 ck_header = 'lag_ns,' + ','.join(f'CK_error_set{i+1}' for i in range(ck.shape[1]))
 ck_csv = np.column_stack([lags_ck, ck])
-np.savetxt(OUTPUT_DIR / 'Supplementary_FigS5_CK.csv', ck_csv, delimiter=',',
+np.savetxt(OUTPUT_DIR / 'FigS5_CK.csv', ck_csv, delimiter=',',
            header=ck_header, comments='', fmt='%.6f')
 
 # Eigenvalues and timescales (first 20 timescales, NaN padded)
 timescale_padded = np.pad(t_scale, (0, len(spec) - len(t_scale)),
                           constant_values=np.nan)
 eig_csv = np.column_stack([np.arange(1, len(spec) + 1), spec, timescale_padded])
-np.savetxt(OUTPUT_DIR / 'Supplementary_FigS5_eigenvalues.csv', eig_csv, delimiter=',',
+np.savetxt(OUTPUT_DIR / 'FigS5_eigenvalues.csv', eig_csv, delimiter=',',
            header='index,eigenvalue,timescale_ns', comments='', fmt='%.6f')
 
 # ---------- Combined 2×2 figure ----------

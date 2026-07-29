@@ -98,7 +98,7 @@ plt.close()
 # ---------- Export data ----------
 if all_data:
     df = pd.DataFrame(all_data, columns=['System', 'Time_ns', 'Residue', 'SS_code'])
-    csv_path = OUTPUT_DIR / 'Supplementary_FigS3_DSSP_data.csv'
+    csv_path = OUTPUT_DIR / 'FigS3_DSSP.csv'
     df.to_csv(csv_path, index=False)
     print(f"CSV saved to {csv_path}")
 

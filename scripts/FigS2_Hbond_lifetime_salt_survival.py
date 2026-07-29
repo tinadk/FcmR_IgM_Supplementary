@@ -38,11 +38,11 @@ SUPTITLE    = ''            # no overall title
 
 OUTPUT_BASENAME = 'FigS2_Hbond_salt_survival'
 OUTPUT_EXCEL_TAU = OUTPUT_DIR / 'Supplementary_FigS2_Hbond_lifetime_all_systems.xlsx'
-OUTPUT_CSV_ALL   = OUTPUT_DIR / 'Supplementary_FigS2_Saltbridge_survival_all_systems.csv'
+OUTPUT_CSV_ALL   = OUTPUT_DIR / 'FigS2_Saltbridge_survival.csv'
 
-OUTPUT_HBOND_CSV   = OUTPUT_DIR / 'Supplementary_FigS2_Hbond_lifetime_all_systems.csv'
+OUTPUT_HBOND_CSV   = OUTPUT_DIR / 'FigS2_Hbond_lifetime.csv'
 OUTPUT_HBOND_EXCEL = OUTPUT_DIR / 'Supplementary_FigS2_Hbond_lifetime_all_systems.xlsx'
-OUTPUT_SALT_CSV    = OUTPUT_DIR / 'Supplementary_FigS2_Saltbridge_survival_all_systems.csv'
+OUTPUT_SALT_CSV    = OUTPUT_DIR / 'FigS2_Saltbridge_survival.csv'
 OUTPUT_SALT_EXCEL  = OUTPUT_DIR / 'Supplementary_FigS2_Saltbridge_survival_all_systems.xlsx'
 
 # ------------------- Data loading -------------------
