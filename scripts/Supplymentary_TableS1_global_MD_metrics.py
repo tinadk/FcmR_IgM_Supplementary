@@ -3,7 +3,7 @@
 Table S1 – Global MD metrics with bootstrap 95% CI.
 Uses core.compute and core.stats for statistics.
 Reads data: data/<system>/{rmsd, rg, sasa, hbond}.xvg
-Outputs: output/tables/TableS1_global_MD_metrics.xlsx
+Outputs: output/tables/Table S1. global MD metrics.xlsx
 """
 
 import sys
@@ -63,6 +63,6 @@ for m in metrics.keys():
 df = pd.DataFrame(rows, columns=columns)
 
 # ---------- Save Excel ----------
-xlsx_path = OUTPUT_DIR / 'TableS1_global_MD_metrics.xlsx'
+xlsx_path = OUTPUT_DIR / 'Table S1. global MD metrics.xlsx'
 df.to_excel(xlsx_path, index=False)
 print(f'Table S1 saved to {xlsx_path}')

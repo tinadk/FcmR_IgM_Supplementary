@@ -2,7 +2,7 @@
 """
 Table S2 – MSM validation key parameters.
 Uses only the last two CK error columns (Set2 & Set3).
-Outputs: output/tables/TableS2_MSM_validation.xlsx
+Outputs: output/tables/Table S2. MSM validation.xlsx
 """
 
 import sys
@@ -60,6 +60,6 @@ data = {
 }
 
 df = pd.DataFrame(data)
-xlsx_path = OUTPUT_DIR / 'TableS2_MSM_validation.xlsx'
+xlsx_path = OUTPUT_DIR / 'Table S2. MSM validation.xlsx'
 df.to_excel(xlsx_path, index=False)
 print(f'Table S2 saved to {xlsx_path}')
