@@ -55,9 +55,9 @@ def load_and_smooth(sys, fname):
 fig, axes = plt.subplots(1, 3, figsize=(24, 6))
 
 plot_configs = [
-    ('rmsd.xvg', 'RMSD (nm)', 'Backbone RMSD', (0, None)),
-    ('rg.xvg', 'Rg (nm)', 'Radius of Gyration', (0, None)),
-    ('sasa.xvg', 'SASA (nm²)', 'Solvent-Accessible Surface Area', (110, None))
+    ('rmsd.xvg', 'RMSD (nm)', (0, None)),
+    ('rg.xvg', 'Rg (nm)', (0, None)),
+    ('sasa.xvg', 'SASA (nm²)', (110, None))
 ]
 
 for ax, (fname, ylabel, title, ylim) in zip(axes, plot_configs):
