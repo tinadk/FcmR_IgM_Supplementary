@@ -1,149 +1,95 @@
-#!/usr/bin/env python3
-"""
-Fig2 : Occurrence of residue pairs across 7 structures (core/semi-core/peripheral).
-Dark blue = 7/7, medium = 5‑6/7, light = ≤4/7.
-Uses shared config.py for output, DPI, plot params, PDB directory, and chain info.
-Exports: figure (png/jpg/pdf), CSV, Excel.
-"""
+# Supplementary Material for "Hierarchical organization of FcµR–IgM recognition across distinct IgM oligomeric states"
+## Citation
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21247258.svg)](https://doi.org/10.5281/zenodo.21247258)
 
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+This directory contains supplementary information, source data, analysis scripts,
+and FoldX output files accompanying the manuscript.
 
-from config import OUT_DIR, DPI, MPL_RCPARAMS, PDB_DIR, PDB_INFO
+================================================================================
+FOLDER STRUCTURE
+================================================================================
 
-import os
-import re
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from Bio.PDB import PDBParser, NeighborSearch, is_aa
-from collections import defaultdict
-import warnings
+supplementary_information.pdf
+    Main supplementary document containing supplementary figures (Figs. S1–S6),
+    supplementary tables (Tables S1–S4), and detailed methods.
 
-warnings.filterwarnings('ignore')
+supplementary_tables/
+    Editable Excel tables referenced in the main text and supplementary information.
 
-# ------------------- Output folder -------------------
-OUTPUT_DIR = OUT_DIR / "fig2_output"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+source_data/
+    Raw data underlying the main‑text and supplementary figures.
 
-# ------------------- Global plot settings -------------------
-plt.rcParams.update(MPL_RCPARAMS)
-plt.rcParams['pdf.fonttype'] = 42
-plt.rcParams['ps.fonttype'] = 42
+    - source_data_fig1a_rmsd_matrix.csv
+    - source_data_fig2.csv
+    - source_data_fig3_three_groups.csv
+    - source_data_fig4a_stoichiometry_full.csv
+    - source_data_fig4b_pentamer_j_chain_stoichiometry.csv
+    - source_data_dimer_vs_pentamer_diff.csv
+    - source_data_sIgM_vs_pentamer_diff.csv
+    - source_data_fig7_mafft_alignment.fasta
+    - source_data_fig7b_RMSF_chainC.csv
+    - source_data_fig7c_COM_distance.csv
+    - source_data_fig8a_tica_overlay.csv
+    - source_data_fig8b_fel_2x2.csv
+    - source_data_fig9a_macrostate_populations.csv
+    - source_data_fig9b_tpt_flux.csv
+    - source_data_fig9c_mfpt_all_systems.csv
+    - source_data_figS1_RMSF_both_chains.csv
 
-# ------------------- Constants from config -------------------
-BASE_PDB = PDB_DIR
-PDBS = list(PDB_INFO.keys())                     # all 7 structures
-# Build Fc/Ig chain dict (ignore J and SC)
-CHAIN = {pdb: {"Fc": info["Fc"], "Ig": info["Ig"]}
-         for pdb, info in PDB_INFO.items()}
-DIST_CUT = 4.5
+scripts/
+    Python scripts to reproduce the main‑text figures. All scripts import shared
+    parameters from the project‑level `config.py`.
 
-def fmt(res):
-    return res.resname.capitalize() + str(res.id[1])
+    | Figure | Script | Output folder (`output/`) |
+    |--------|--------|---------------------------|
+    | Fig. 1A | `Fig1A_RMSD_heatmap.py` | `fig1a_rmsd_heatmap/` |
+    | Fig. 2  | `fig2-4_contact_analysis.py` | `fig2_output/` |
+    | Fig. 7B | `Fig7B_RMSF_chainC_annotated.py` | `fig7b_output/` |
+    | Fig. 7C | `Fig7C_COM_distance.py` | `fig7c_output/` |
+    | Fig. 8A | `Fig8A_TICA_FELs.py` | `fig8a_tica_fels_output/` |
+    | Fig. 8B | `Fig8B_FELs.py` | `fig8b_fels_output/` |
+    | Fig. 9A | `Fig9A_Macrostate_populations.py` | `fig9a_macrostate_populations/` |
+    | Fig. 9B | `Fig9B_TPT_net_flux_networks.py` | `fig9b_tpt_flux/` |
+    | Fig. 9C | `Fig9C_MFPT_matrices.py` | `fig9c_mfpt/` |
+    | Fig. S1 | `FigS1_RMSF_both_chains.py` | `figS1_RMSF_both_chains/` |
 
-def sidechain(res):
-    backbone = {'N', 'CA', 'C', 'O'}
-    if res.resname == 'GLY':
-        return [a for a in res.get_atoms() if a.name == 'CA']
-    return [a for a in res.get_atoms() if a.name not in backbone]
+    - `renumber_chains.py`: PDB chain renumbering (pre‑FoldX).
+    - `fig8_workflow.mermaid`: Mermaid source for computational workflow figure.
 
-def main():
-    parser = PDBParser(QUIET=True)
-    occurrence = defaultdict(int)
+    Each script saves high‑resolution figures (`.png`, `.jpg`, `.pdf`, 1600 dpi)
+    and underlying numerical data (`.csv` / `.xlsx`) in the designated output folder.
 
-    for pdb in PDBS:
-        fname = BASE_PDB / f"{pdb}.pdb"
-        if not fname.exists():
-            print(f"Missing {fname}")
-            continue
-        struct = parser.get_structure(pdb, str(fname))
-        fc_chains = CHAIN[pdb]["Fc"]
-        ig_chains = CHAIN[pdb]["Ig"]
+foldx_config/
+    FoldX alanine scanning raw outputs and execution commands.
 
-        ig_atoms = []
-        for c in ig_chains:
-            if c in struct[0]:
-                ig_atoms.extend(list(struct[0][c].get_atoms()))
-        if not ig_atoms:
-            continue
+    - `foldx_input_config.txt` – Run commands and parameters
+    - `foldx_alanine_scanning_7yte.fxout`
+    - `foldx_alanine_scanning_7ytc.fxout`
+    - `foldx_alanine_scanning_7ytd.fxout`
+    - `foldx_alanine_scanning_7ysg.fxout`
+    - `foldx_alanine_scanning_8bpe.fxout`
+    - `foldx_alanine_scanning_8bpf.fxout`
+    - `foldx_alanine_scanning_8bpg.fxout`
 
-        ns = NeighborSearch(ig_atoms)
-        seen = set()
-        for fc in fc_chains:
-            if fc not in struct[0]:
-                continue
-            for res in struct[0][fc]:
-                if not is_aa(res) or not (18 <= res.id[1] <= 124):
-                    continue
-                sc = sidechain(res)
-                if not sc:
-                    continue
-                fc_key = fmt(res)
-                for a in sc:
-                    for nb in ns.search(a.coord, DIST_CUT):
-                        nb_res = nb.get_parent()
-                        if not is_aa(nb_res):
-                            continue
-                        ig_key = fmt(nb_res)
-                        seen.add((fc_key, ig_key))
-        for pair in seen:
-            occurrence[pair] += 1
+================================================================================
+DATA & CODE AVAILABILITY
+================================================================================
 
-    if not occurrence:
-        print("No contacts found.")
-        return
+All processed simulation trajectories, topologies, and feature matrices have been
+deposited at Zenodo under DOI: 10.5281/zenodo.21247258.
 
-    def tier(cnt):
-        if cnt == 7: return 0
-        elif cnt >= 5: return 1
-        else: return 2
+The automated Snakemake workflow and all custom analysis scripts are available on
+GitHub at https://github.com/tinadk/FcmR_IgM_Supplementary under an MIT license.
 
-    pairs_sorted = sorted(occurrence.items(),
-                          key=lambda kv: (tier(kv[1]), -kv[1],
-                                          int(re.search(r'\d+', kv[0][0]).group()),
-                                          int(re.search(r'\d+', kv[0][1]).group())))
-    labels = [f"{p[0]}-{p[1]}" for p, _ in pairs_sorted]
-    counts = [cnt for _, cnt in pairs_sorted]
-    colors = ['#08306b' if c == 7 else '#2171b5' if c >= 5 else '#6baed6' for c in counts]
+================================================================================
+USAGE NOTES
+================================================================================
 
-    fig, ax = plt.subplots(figsize=(max(9, len(labels) * 0.3), 5))
-    fig.patch.set_facecolor('white')
-    ax.bar(range(len(labels)), counts, color=colors, edgecolor='black', linewidth=0.5)
-    ax.set_xticks(range(len(labels)))
-    ax.set_xticklabels(labels, rotation=45, ha='right')
-    ax.set_ylabel('Number of complexes (out of 7) with ≥ 1 FcμR-D1 chain contact')
-    ax.set_xlabel('Residue pairs (FcµR residue – Cµ4 residue)')
-    ax.set_ylim(0, 7.5)
-    ax.set_xlim(-0.6, len(labels) - 0.4)
-
-    for spine in ax.spines.values():
-        spine.set_visible(True)
-        spine.set_linewidth(0.8)
-    ax.tick_params(width=0.8)
-    ax.grid(False)
-    plt.tight_layout()
-
-    base_name = OUTPUT_DIR / 'Fig2_occurrence_barplot'
-    for ext in ('png', 'jpg', 'pdf'):
-        fig.savefig(f"{base_name}.{ext}", dpi=DPI, facecolor='white')
-    plt.close(fig)
-    print(f"Figures saved to {OUTPUT_DIR}")
-
-    df_out = pd.DataFrame({'pair': labels, 'occurrence': counts})
-    csv_path = OUTPUT_DIR / 'Fig2_occurrence_barplot.csv'
-    df_out.to_csv(csv_path, index=False)
-    print(f"CSV saved → {csv_path}")
-
-    xlsx_path = OUTPUT_DIR / 'Fig2_occurrence_barplot.xlsx'
-    try:
-        df_out.to_excel(xlsx_path, index=False)
-        print(f"Excel saved → {xlsx_path}")
-    except ImportError:
-        print("pandas/openpyxl missing; Excel export skipped.")
-    except Exception as e:
-        print(f"Excel export failed: {e}")
-
-if __name__ == "__main__":
-    main()
+- Python scripts require Python 3.10+ with NumPy, Pandas, Matplotlib, Seaborn,
+  MDAnalysis, NetworkX, Biopython.
+- FoldX analysis requires a license for FoldX 5.0. The provided `.fxout` files
+  are the original program output.
+- PDB structures are available from the RCSB PDB under accession codes:
+  7YTE, 7YTC, 7YTD, 7YSG, 8BPE, 8BPF, 8BPG.
+- All supplementary tables are provided as editable `.xlsx` files in the
+  `supplementary_tables/` folder.
