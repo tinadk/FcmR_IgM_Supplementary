@@ -31,17 +31,6 @@ kT = 2.494
 BINS = 80
 COLOR_LIST = [COLORS[s] for s in SYSTEMS]
 
-def load_tic_data():
-    data = {}
-    for sys in SYSTEMS:
-        fpath = TICA_DIR / f'{sys}_tica.npy'
-        if fpath.exists():
-            data[sys] = np.load(fpath)[:, :2]
-        else:
-            print(f'  WARNING: {fpath} not found, skipping {sys}.')
-            data[sys] = None
-    return data
-
 DATA = load_tic_data()
 
 # ---------- Combine all data ----------

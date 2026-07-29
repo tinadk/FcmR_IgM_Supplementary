@@ -25,66 +25,6 @@ MARKER_COLOR = '#333333'
 
 FcMuR_CHAIN = 'C'   # FcμR is chain C
 
-
-def build_residue_map(sys_name):
-    """Build residue map for FcμR chain (C). Returns (csv_path, residue_boundaries)."""
-    map_file = DATA_DIR / sys_name / 'residue_map_C.csv'
-    if map_file.exists():
-        map_file.unlink()
-
-    # Find PDB (try PDB_DIR first, then DATA_DIR)
-    pdb_path = PDB_DIR / sys_name / 'protein.pdb'
-    if not pdb_path.exists():
-        pdb_path = DATA_DIR / sys_name / 'protein.pdb'
-    if not pdb_path.exists():
-        print(f'[WARNING] {sys_name}: PDB not found')
-        return None, None
-
-    ca_list = []
-    with open(pdb_path) as f:
-        for line in f:
-            if line.startswith(('ATOM', 'HETATM')) and line[12:16].strip() == 'CA':
-                if line[21].strip() == FcMuR_CHAIN:
-                    ca_list.append((line[17:20].strip(), int(line[22:26].strip())))
-
-    if not ca_list:
-        print(f'[WARNING] {sys_name}: no chain {FcMuR_CHAIN} CA atoms')
-        return None, None
-
-    # Build unique residues with boundaries
-    residues = []
-    cur_res = None
-    start = 0
-    for i, (name, rid) in enumerate(ca_list):
-        if (name, rid) != cur_res:
-            if cur_res is not None:
-                residues.append((cur_res[0], cur_res[1], start, i))
-            cur_res = (name, rid)
-            start = i
-    residues.append((cur_res[0], cur_res[1], start, len(ca_list)))
-
-    # Save CSV
-    map_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(map_file, 'w') as f:
-        f.write('index,chain,resname,resid\n')
-        for idx, (name, rid, s, e) in enumerate(residues):
-            f.write(f'{idx+1},{FcMuR_CHAIN},{name},{rid}\n')
-    print(f'[Generated] {sys_name}: {len(residues)} residues -> {map_file}')
-    return map_file, residues
-
-
-def get_chain_start_and_n(pdb_path, chain):
-    """Return (start_idx, n_CA) for a given chain in PDB."""
-    ca_order = []
-    with open(pdb_path) as f:
-        for line in f:
-            if line.startswith(('ATOM', 'HETATM')) and line[12:16].strip() == 'CA':
-                ca_order.append(line[21].strip())
-    start = ca_order.index(chain)
-    n = ca_order.count(chain)
-    return start, n
-
-
 fig, ax = plt.subplots(figsize=(14, 5))
 max_len = 0
 final_labels = None

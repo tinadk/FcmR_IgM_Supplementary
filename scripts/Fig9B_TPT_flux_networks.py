@@ -49,17 +49,6 @@ for si, sys_name in enumerate(SYSTEMS):
     pop_fractions[sys_name] = counts / counts.sum()
 
 # ---------- Helper: build macrostate transition matrix (adjacent frames) ----------
-def build_macro_P(sid):
-    mask = system_labels == sid
-    traj = macro_assign[mask]
-    C = np.zeros((n_macro, n_macro))
-    for t in range(len(traj) - 1):
-        C[traj[t], traj[t+1]] += 1
-    row_sum = C.sum(axis=1)
-    P = np.full((n_macro, n_macro), np.nan)
-    valid = row_sum > 0
-    P[valid] = C[valid] / row_sum[valid, None]
-    return P
 
 # ---------- Plot & collect data ----------
 try:

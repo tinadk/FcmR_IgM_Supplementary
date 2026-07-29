@@ -48,52 +48,6 @@ macro_labels = [f'M{i+1}' for i in range(n_macro)]
 sys_to_id = {name: i for i, name in enumerate(SYSTEMS)}
 
 # ---------- Helper functions ----------
-def build_macro_P(sid):
-    mask = system_labels == sid
-    traj = macro_assign[mask]
-    C = np.zeros((n_macro, n_macro))
-    for t in range(len(traj) - 1):
-        C[traj[t], traj[t+1]] += 1
-    row_sum = C.sum(axis=1)
-    P = np.full((n_macro, n_macro), np.nan)
-    valid = row_sum > 0
-    P[valid] = C[valid] / row_sum[valid, None]
-    return P
-
-def compute_mfpt(P, tau=1):
-    n = P.shape[0]
-    mfpt = np.zeros((n, n))
-    I = np.eye(n)
-    for target in range(n):
-        A = I - P.copy()
-        A[target, :] = 0.0
-        A[target, target] = 1.0
-        b = np.ones(n) * tau
-        b[target] = 0.0
-        mfpt[:, target] = np.linalg.solve(A, b)
-    return mfpt
-
-def mfpt_for_system(sid):
-    P = build_macro_P(sid)
-    valid = ~np.isnan(P).all(axis=1)
-    if valid.sum() == 0:
-        return np.full((n_macro, n_macro), np.nan)
-    P_sub = P[np.ix_(valid, valid)]
-    P_sub = np.nan_to_num(P_sub, nan=0.0)
-    row_sum = P_sub.sum(axis=1)
-    zero_rows = row_sum == 0
-    P_sub[zero_rows, zero_rows] = 1.0
-    P_sub = P_sub / P_sub.sum(axis=1, keepdims=True)
-    mfpt_frames = compute_mfpt(P_sub, tau=LAG_TIME)
-    mfpt_ns = mfpt_frames * FRAME_TO_NS
-    mfpt_full = np.full((n_macro, n_macro), np.nan)
-    vi = np.where(valid)[0]
-    for idx_i, si in enumerate(vi):
-        for idx_j, sj in enumerate(vi):
-            if si != sj:
-                mfpt_full[si, sj] = mfpt_ns[idx_i, idx_j]
-    np.fill_diagonal(mfpt_full, np.nan)
-    return mfpt_full
 
 # ---------- Compute MFPT ----------
 mfpt = {}

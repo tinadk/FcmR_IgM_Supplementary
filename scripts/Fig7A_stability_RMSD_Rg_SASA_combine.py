@@ -32,24 +32,7 @@ ALPHA = 0.9
 SMOOTH_WINDOW = 50          # rolling window for visual smoothing
 
 
-def get_data_path(sys, fname):
-    return DATA_DIR / sys / fname
-
 # ---------- Helper: load and smooth ----------
-def load_and_smooth(sys, fname):
-    f = get_data_path(sys, fname)
-    if not f.exists():
-        return None, None
-    data = np.loadtxt(f, comments=['@', '#'])
-    t = data[:, 0] / 1000.0         # ps -> ns
-    y = data[:, 1]
-    # truncate to TIME_MAX_NS
-    mask = t <= TIME_MAX_NS
-    t, y = t[mask], y[mask]
-    # apply moving average
-    y_smooth = pd.Series(y).rolling(SMOOTH_WINDOW, center=True,
-                                    min_periods=1).mean()
-    return t, y_smooth
 
 # ---------- Plotting ----------
 fig, axes = plt.subplots(1, 3, figsize=(24, 6))
