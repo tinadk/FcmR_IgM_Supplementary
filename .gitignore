@@ -1,1 +1,39 @@
+# IDE
 .idea/
+.vscode/
+.DS_Store
+
+# Output directory
+output/
+
+# Data files (stored in Zenodo)
+*.xvg
+*.npy
+*.dat
+*.pdb
+*.gro
+*.xtc
+*.trr
+
+# Supplementary material (submitted separately)
+supplementary_information.pdf
+supplementary_figures/
+supplementary_tables/
+source_data/
+foldx_config/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Generated figures – but keep main_figures/ for preview
+*.jpg
+*.png
+*.pdf
+*.svg
+!main_figures/

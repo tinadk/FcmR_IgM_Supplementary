@@ -1,95 +1,159 @@
-# Supplementary Material for "Hierarchical organization of FcµR–IgM recognition across distinct IgM oligomeric states"
-## Citation
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21247258.svg)](https://doi.org/10.5281/zenodo.21247258)
+# Hierarchical organization of FcµR–IgM recognition across distinct IgM oligomeric states
 
-This directory contains supplementary information, source data, analysis scripts,
-manuscript figures, and FoldX output files accompanying the manuscript.
+This repository contains the complete set of Python scripts, core modules,
+and configuration files required to reproduce all main‑text and
+supplementary figures and tables in the associated manuscript.
 
-================================================================================
-FOLDER STRUCTURE
-================================================================================
+## Repository structure
 
-supplementary_information.pdf
-    Main supplementary document containing supplementary figures (Figs. S1–S6),
-    supplementary tables (Tables S1–S4), and detailed methods.
+.
+├── config.py                          # Global configuration (paths, colours, DPI, matplotlib params)
+├── core/                              # Shared computational modules
+│   ├── __init__.py
+│   ├── compute.py                     # Trajectory trimming, equilibration
+│   └── stats.py                       # Bootstrap CI, etc.
+├── scripts/                           # Analysis and plotting scripts
+│   ├── FoldX_input_config.txt         # FoldX alanine scanning run commands
+│   ├── Fig1A_RMSD_heatmap.py
+│   ├── Fig2_occurrence_barplot.py
+│   ├── Fig3_high_state_dependence.py
+│   ├── Fig4_stoichiometry.py
+│   ├── Fig7A_stability_RMSD_Rg_SASA_combine.py
+│   ├── Fig7B_RMSF_chainC.py
+│   ├── Fig7C_COM_distance.py
+│   ├── Fig8A_TICA_FELs.py
+│   ├── Fig8B_FELs.py
+│   ├── Fig9A_equilibrium_macrostate_populations.py
+│   ├── Fig9B_TPT_flux_networks.py
+│   ├── Fig9C_MFPT.py
+│   ├── FigS1_RMSF_both_chains.py
+│   ├── FigS2_Hbond_lifetime_salt_survival.py
+│   ├── FigS3_DSSP_secondary_structure.py
+│   ├── FigS4_PCA_FELs.py
+│   ├── FigS5_MSM_validation.py
+│   ├── TableS1_global_MD_metrics.py
+│   └── TableS2_MSM_validation.py
+├── main_figures/                      # High‑resolution main‑text figures (1600 dpi)
+│   ├── Fig1A.jpg
+│   ├── Fig1B.jpg
+│   ├── Fig2.jpg
+│   ├── Fig3.jpg
+│   ├── Fig4A.jpg
+│   ├── Fig4B.jpg
+│   ├── Fig5A.jpg
+│   ├── Fig5B.jpg
+│   ├── Fig6A.jpg
+│   ├── Fig6B.jpg
+│   ├── Fig6C.jpg
+│   ├── Fig7A.jpg
+│   ├── Fig7B.jpg
+│   ├── Fig7C.jpg
+│   ├── Fig8A.jpg
+│   ├── Fig8B.jpg
+│   ├── Fig9A.jpg
+│   ├── Fig9B.jpg
+│   ├── Fig9C.jpg
+│   ├── Fig10A.jpg
+│   ├── Fig10B.jpg
+│   ├── Fig10C.jpg
+│   ├── Fig10D.jpg
+│   ├── Fig10E.jpg
+│   ├── Fig10F.jpg
+│   ├── Fig10G.jpg
+│   └── Fig11.svg
+├── README.md
+├── LICENSE
+└── .gitignore                         # Ignore output/, *.xvg, *.npy, *.pdb, etc.
 
-supplementary_tables/
-    Editable Excel tables referenced in the main text and supplementary information.
 
-figures/
-    High-resolution manuscript figures (jpg, 1600 dpi) for all main-text figures.
+All scripts import shared settings from `config.py` and use functions
+defined in the `core` module. Running any script from the project root
+creates publication‑quality figures and numerical data tables inside a
+local `output/` folder (not tracked by Git).
 
-source_data/
-    Raw data underlying the main‑text and supplementary figures.
+## What is NOT in this repository
 
-    - source_data_fig1a_rmsd_matrix.csv
-    - source_data_fig2.csv
-    - source_data_fig3_three_groups.csv
-    - source_data_fig4a_stoichiometry_full.csv
-    - source_data_fig4b_pentamer_j_chain_stoichiometry.csv
-    - source_data_dimer_vs_pentamer_diff.csv
-    - source_data_sIgM_vs_pentamer_diff.csv
-    - source_data_fig7_mafft_alignment.fasta
-    - source_data_fig7b_RMSF_chainC.csv
-    - source_data_fig7c_COM_distance.csv
-    - source_data_fig8a_tica_overlay.csv
-    - source_data_fig8b_fel_2x2.csv
-    - source_data_fig9a_macrostate_populations.csv
-    - source_data_fig9b_tpt_flux.csv
-    - source_data_fig9c_mfpt_all_systems.csv
-    - source_data_figS1_RMSF_both_chains.csv
+| Item | Where to find it |
+|------|------------------|
+| MD simulation data (.xvg, .npy, .dat) | Zenodo (DOI: 10.5281/zenodo.21247258) |
+| PDB structure files | Zenodo or RCSB PDB (7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG) |
+| FoldX alanine scanning outputs (.fxout) | Supplementary material package (submitted with manuscript) |
+| Source data (.csv) for all figures | Supplementary material package |
+| Supplementary tables (.xlsx) | Supplementary material package |
+| Supplementary figures (.jpg) | Supplementary material package |
+| Supplementary information PDF | Supplementary material package |
 
-scripts/
-    Python scripts to reproduce the main‑text figures. All scripts import shared
-    parameters from the project‑level `config.py`.
+## Reproducing the analyses
 
-    | Figure | Script | Description |
-    |--------|--------|-------------|
-    | Fig. 1A | `Fig1A_RMSD_heatmap.py` | Pairwise Cα RMSD heatmap |
-    | Fig. 2  | `fig2-4_contact_analysis.py` | Contact proportion analysis |
-    | Fig. 7B | `Fig7B_RMSF_chainC_annotated.py` | Per‑residue RMSF of FcµR‑D1 |
-    | Fig. 7C | `Fig7C_COM_distance.py` | COM distance time series & bar plot |
-    | Fig. 8A | `Fig8A_TICA_FELs.py` | TICA projection & FEL 2×2 |
-    | Fig. 8B | `Fig8B_FELs.py` | Generic FEL overlay & 2×2 |
-    | Fig. 9A | `Fig9A_Macrostate_populations.py` | Macrostate population bar chart |
-    | Fig. 9B | `Fig9B_TPT_net_flux_networks.py` | TPT net flux networks |
-    | Fig. 9C | `Fig9C_MFPT_matrices.py` | MFPT matrices |
-    | Fig. S1 | `FigS1_RMSF_both_chains.py` | RMSF of both chains |
+### 1. Clone the repository
+git clone https://github.com/tinadk/FcmR_IgM_Supplementary.git
+cd FcmR_IgM_Supplementary
 
-    - `renumber_chains.py`: PDB chain renumbering (pre‑FoldX).
-    - `fig8_workflow.mermaid`: Mermaid source for computational workflow figure.
+### 2. Install dependencies
+Python ≥ 3.10 is required. Install the necessary packages:
+pip install numpy pandas matplotlib seaborn mdanalysis networkx biopython scipy
 
-foldx_config/
-    FoldX alanine scanning raw outputs and execution commands.
+### 3. Obtain the data
+Download the Zenodo dataset (DOI: 10.5281/zenodo.21247258) and extract it.
+The dataset includes:
+- `data/` – MD analysis files (.xvg, .dat)
+- `MSM_final/archive/complete/data/` – MSM input files (.npy)
+- `source_file/` – PDB structures
 
-    - `foldx_input_config.txt` – Run commands and parameters
-    - `foldx_alanine_scanning_7yte.fxout`
-    - `foldx_alanine_scanning_7ytc.fxout`
-    - `foldx_alanine_scanning_7ytd.fxout`
-    - `foldx_alanine_scanning_7ysg.fxout`
-    - `foldx_alanine_scanning_8bpe.fxout`
-    - `foldx_alanine_scanning_8bpf.fxout`
-    - `foldx_alanine_scanning_8bpg.fxout`
+### 4. Configure paths
+Edit `config.py` and set:
+- `PDB_DIR` → where you extracted `source_file/`
+- `DATA_DIR` → where you extracted `data/`
+- `OUT_DIR`  → where outputs should be saved
 
-================================================================================
-DATA & CODE AVAILABILITY
-================================================================================
+All other paths used by the scripts (e.g., MSM data, TICA data) are
+defined relative to the project root and normally do not need to be changed.
 
-All processed simulation trajectories, topologies, and feature matrices have been
-deposited at Zenodo under DOI: 10.5281/zenodo.21247258.
+### 5. Run a script
+python scripts/Fig9C_MFPT.py
 
-The automated Snakemake workflow and all custom analysis scripts are available on
-GitHub at https://github.com/tinadk/FcmR_IgM_Supplementary under an MIT license.
+Generated figures (`.png`, `.jpg`, `.pdf`) and data tables (`.csv`,
+`.xlsx`) are saved in the `OUT_DIR` subfolder.
 
-================================================================================
-USAGE NOTES
-================================================================================
+### Script‑to‑figure correspondence
+| Figure / Table | Script                                        |
+|----------------|-----------------------------------------------|
+| Fig.1A         | `Fig1A_RMSD_heatmap.py`                       |
+| Fig.2          | `Fig2_occurrence_barplot.py`                  |
+| Fig.3          | `Fig3_high_state_dependence.py`               |
+| Fig.4A/B       | `Fig4_stoichiometry.py`                       |
+| Fig.7A         | `Fig7A_stability_RMSD_Rg_SASA_combine.py`     |
+| Fig.7B         | `Fig7B_RMSF_chainC.py`                        |
+| Fig.7C         | `Fig7C_COM_distance.py`                       |
+| Fig.8A         | `Fig8A_TICA_FELs.py`                          |
+| Fig.8B         | `Fig8B_FELs.py`                               |
+| Fig.9A         | `Fig9A_equilibrium_macrostate_populations.py` |
+| Fig.9B         | `Fig9B_TPT_flux_networks.py`                  |
+| Fig.9C         | `Fig9C_MFPT.py`                               |
+| Fig.S1         | `FigS1_RMSF_both_chains.py`                   |
+| Fig.S2         | `FigS2_Hbond_lifetime_salt_survival.py`       |
+| Fig.S3         | `FigS3_DSSP_secondary_structure.py`           |
+| Fig.S4         | `FigS4_PCA_FELs.py`                           |
+| Fig.S5         | `FigS5_MSM_validation.py`                     |
+| Table S1       | `TableS1_global_MD_metrics.py`                |
+| Table S2       | `TableS2_MSM_validation.py`                   |
 
-- Python scripts require Python 3.10+ with NumPy, Pandas, Matplotlib, Seaborn,
-  MDAnalysis, NetworkX, Biopython.
-- FoldX analysis requires a license for FoldX 5.0. The provided `.fxout` files
-  are the original program output.
-- PDB structures are available from the RCSB PDB under accession codes:
-  7YTE, 7YTC, 7YTD, 7YSG, 8BPE, 8BPF, 8BPG.
-- All supplementary tables are provided as editable `.xlsx` files in the
-  `supplementary_tables/` folder.
+Tables S3 and S4 are exported automatically by the Fig.9A and Fig.9C
+scripts, respectively.
+
+## Data availability
+- All processed simulation trajectories, topologies, and feature matrices
+  are deposited at Zenodo under DOI:
+  [10.5281/zenodo.21247258](https://doi.org/10.5281/zenodo.21247258).
+- PDB structures are available from the RCSB Protein Data Bank (accession
+  codes: 7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG).
+
+## Supplementary material package
+The supplementary material submitted to the journal (including the
+supplementary information PDF, supplementary figures, supplementary tables,
+source data, and FoldX output files) is archived separately and is not part
+of this code repository. The scripts included here are sufficient to
+regenerate all results from the raw data.
+
+## License
+This project is licensed under the MIT License.
