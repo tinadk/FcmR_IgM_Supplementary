@@ -21,7 +21,7 @@ from config import DATA_DIR, OUT_DIR, SYSTEMS, COLORS, DPI, MPL_RCPARAMS
 plt.rcParams.update(MPL_RCPARAMS)
 
 # ------------------- Output directory -------------------
-OUTPUT_DIR = OUT_DIR / "Supplementary_figS3_DSSP_heatmap"
+OUTPUT_DIR = OUT_DIR / "FigS3_DSSP_heatmap"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ------------------- Constants -------------------
@@ -102,7 +102,7 @@ if all_data:
     df.to_csv(csv_path, index=False)
     print(f"CSV saved to {csv_path}")
 
-    xlsx_path = OUTPUT_DIR / 'Supplementary_FigS3_DSSP_data.xlsx'
+    xlsx_path = OUTPUT_DIR / 'FigS3_DSSP_data.xlsx'
     try:
         with pd.ExcelWriter(xlsx_path, engine='openpyxl') as writer:
             for sys in SYSTEMS:
@@ -113,4 +113,4 @@ if all_data:
     except Exception as e:
         print(f"Excel export failed: {e}")
 
-print("Supplementary_Figure S3 generation complete.")
+print("FigS3 generation complete.")

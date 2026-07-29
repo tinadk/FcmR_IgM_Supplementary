@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams.update(MPL_RCPARAMS)
 
-OUTPUT_DIR = OUT_DIR / "Supplementary_figS1_RMSF_both_chains_output"
+OUTPUT_DIR = OUT_DIR / "FigS1_RMSF_both_chains_output"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 fig, ax = plt.subplots(figsize=(16, 5))
@@ -102,7 +102,7 @@ plt.tight_layout(rect=[0, 0.22, 1, 1])
 
 # ---------- Save figure ----------
 for fmt in ('png', 'jpg', 'pdf'):
-    plt.savefig(OUTPUT_DIR / f'Supplementary_FigS1_RMSF_both_chains.{fmt}',
+    plt.savefig(OUTPUT_DIR / f'FigS1_RMSF_both_chains.{fmt}',
                 dpi=DPI, bbox_inches='tight', facecolor='white')
 plt.close()
 
@@ -116,4 +116,4 @@ xlsx_path = OUTPUT_DIR / 'RMSF_both_chains_all_residues.xlsx'
 df.to_excel(xlsx_path, index=False)
 print(f'XLSX saved to {xlsx_path}')
 
-print(f'Figure and data files saved to {OUTPUT_DIR}')
+print(f'FigS1 and data files saved to {OUTPUT_DIR}')

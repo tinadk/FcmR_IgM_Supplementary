@@ -2,7 +2,9 @@
 """
 Fig. S5 – MSM validation (implied timescales, CK test, eigenvalue spectrum,
           timescale separation). Single combined 2×2 panel.
-Reads data and parameters from config.py.  No titles.
+Reads data and parameters from config.py.  No titles.  Subplot labels A–D
+placed at the top-left outside of each panel.
+Exports: ITS, CK, eigenvalues, and separate timescales CSV.
 """
 
 import sys
@@ -19,7 +21,7 @@ plt.rcParams.update(MPL_RCPARAMS)
 
 # ---------- Paths ----------
 MSM_DIR = ROOT / 'MSM_final' / 'archive' / 'complete' / 'data' / 'msm'
-OUTPUT_DIR = OUT_DIR / 'Supplementary_figS5_MSM_validation'
+OUTPUT_DIR = OUT_DIR / 'FigS5_MSM_validation'
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---------- Load data ----------
@@ -47,12 +49,17 @@ ck_csv = np.column_stack([lags_ck, ck])
 np.savetxt(OUTPUT_DIR / 'FigS5_CK.csv', ck_csv, delimiter=',',
            header=ck_header, comments='', fmt='%.6f')
 
-# Eigenvalues and timescales (first 20 timescales, NaN padded)
+# Eigenvalues and timescales (full, NaN padded)
 timescale_padded = np.pad(t_scale, (0, len(spec) - len(t_scale)),
                           constant_values=np.nan)
 eig_csv = np.column_stack([np.arange(1, len(spec) + 1), spec, timescale_padded])
 np.savetxt(OUTPUT_DIR / 'FigS5_eigenvalues.csv', eig_csv, delimiter=',',
            header='index,eigenvalue,timescale_ns', comments='', fmt='%.6f')
+
+# ---------- Separate timescales CSV (first 20 only) ----------
+timescale_only_csv = np.column_stack([np.arange(1, len(t_scale) + 1), t_scale])
+np.savetxt(OUTPUT_DIR / 'FigS5_timescales.csv', timescale_only_csv,
+           delimiter=',', header='index,timescale_ns', comments='', fmt='%.6f')
 
 # ---------- Combined 2×2 figure ----------
 fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(14, 10))
@@ -63,6 +70,8 @@ for i in range(min(5, its_ns.shape[1])):
 ax1.set_xlabel('Lag time (ns)')
 ax1.set_ylabel('Timescale (ns)')
 ax1.legend(fontsize=8)
+# Place label outside top-left
+ax1.set_title('A', loc='left', fontweight='bold', fontsize=14, y=1.05, x=-0.05)
 
 # Top‑right: Chapman–Kolmogorov test
 for i in range(ck.shape[1]):
@@ -70,18 +79,21 @@ for i in range(ck.shape[1]):
 ax2.set_xlabel('Lag time (ns)')
 ax2.set_ylabel('CK error')
 ax2.legend(fontsize=8)
+ax2.set_title('B', loc='left', fontweight='bold', fontsize=14, y=1.05, x=-0.05)
 
 # Bottom‑left: Eigenvalue spectrum
 ax3.plot(range(1, len(spec) + 1), spec, 'o-', markersize=4)
 ax3.set_xlabel('Eigenvalue index')
 ax3.set_ylabel('Eigenvalue (real part)')
+ax3.set_title('C', loc='left', fontweight='bold', fontsize=14, y=1.05, x=-0.05)
 
 # Bottom‑right: Timescale separation
 ax4.plot(range(1, len(t_scale) + 1), t_scale, 's-', color='crimson')
 ax4.set_xlabel('Eigenvalue index')
 ax4.set_ylabel('Implied timescale (ns)')
+ax4.set_title('D', loc='left', fontweight='bold', fontsize=14, y=1.05, x=-0.05)
 
-# No suptitle, no individual subplot titles
+# No overall suptitle
 plt.tight_layout()
 
 # Save figure
@@ -90,4 +102,4 @@ for ext in ('png', 'jpg', 'pdf'):
                 dpi=DPI, bbox_inches='tight', facecolor='white')
 plt.close()
 
-print(f'Supplementary_Fig. S5 and CSV files saved to {OUTPUT_DIR}')
+print(f'FigS5 and all CSV files saved to {OUTPUT_DIR}')

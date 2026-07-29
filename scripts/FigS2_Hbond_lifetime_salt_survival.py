@@ -26,7 +26,7 @@ warnings.filterwarnings('ignore')
 plt.rcParams.update(MPL_RCPARAMS)
 
 # ------------------- Output directory -------------------
-OUTPUT_DIR = OUT_DIR / "Supplementary_figS2_Hbond_salt_survival"
+OUTPUT_DIR = OUT_DIR / "FigS2_Hbond_salt_survival"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ------------------- Figure‑specific settings -------------------
@@ -37,13 +37,13 @@ YLABEL      = 'Survival probability S(t)'
 SUPTITLE    = ''            # no overall title
 
 OUTPUT_BASENAME = 'FigS2_Hbond_salt_survival'
-OUTPUT_EXCEL_TAU = OUTPUT_DIR / 'Supplementary_FigS2_Hbond_lifetime_all_systems.xlsx'
+OUTPUT_EXCEL_TAU = OUTPUT_DIR / 'FigS2_Hbond_lifetime_all_systems.xlsx'
 OUTPUT_CSV_ALL   = OUTPUT_DIR / 'FigS2_Saltbridge_survival.csv'
 
 OUTPUT_HBOND_CSV   = OUTPUT_DIR / 'FigS2_Hbond_lifetime.csv'
-OUTPUT_HBOND_EXCEL = OUTPUT_DIR / 'Supplementary_FigS2_Hbond_lifetime_all_systems.xlsx'
+OUTPUT_HBOND_EXCEL = OUTPUT_DIR / 'FigS2_Hbond_lifetime_all_systems.xlsx'
 OUTPUT_SALT_CSV    = OUTPUT_DIR / 'FigS2_Saltbridge_survival.csv'
-OUTPUT_SALT_EXCEL  = OUTPUT_DIR / 'Supplementary_FigS2_Saltbridge_survival_all_systems.xlsx'
+OUTPUT_SALT_EXCEL  = OUTPUT_DIR / 'FigS2_Saltbridge_survival_all_systems.xlsx'
 
 # ------------------- Data loading -------------------
 

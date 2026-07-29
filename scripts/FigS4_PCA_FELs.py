@@ -62,7 +62,7 @@ if all_rows:
 
     # Combined XLSX (single sheet)
     df_all = pd.DataFrame(all_rows, columns=['System', 'PC1', 'PC2'])
-    xlsx_path = OUTPUT_DIR / 'Supplementary_FigS4_PCA_FEL_data.xlsx'
+    xlsx_path = OUTPUT_DIR / 'SFigS4_PCA_FEL_data.xlsx'
     df_all.to_excel(xlsx_path, sheet_name='All_Systems', index=False)
     print(f'  Saved {xlsx_path}')
 else:
@@ -84,7 +84,7 @@ ax.legend(markerscale=4, loc='lower right', ncol=1, fontsize=8,
           framealpha=0.7, edgecolor='none', labelspacing=0.5, handletextpad=0.4)
 plt.tight_layout()
 for ext in ('png', 'jpg', 'pdf'):
-    plt.savefig(OUTPUT_DIR / f'Supplementary_FifS4_PCA_overlay_scatter.{ext}', dpi=DPI, bbox_inches='tight', facecolor='white')
+    plt.savefig(OUTPUT_DIR / f'FifS4_PCA_overlay_scatter.{ext}', dpi=DPI, bbox_inches='tight', facecolor='white')
 plt.close()
 print('  Overlay saved.')
 
@@ -116,4 +116,4 @@ for ext in ('png', 'jpg', 'pdf'):
 plt.close()
 print('  2x2 saved.')
 
-print(f'All PCA outputs saved to {OUTPUT_DIR}')
+print(f'FigS4 PCA outputs saved to {OUTPUT_DIR}')
