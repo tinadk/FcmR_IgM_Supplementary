@@ -144,7 +144,7 @@ scripts, respectively.
 ## Data availability
 - All processed simulation trajectories, topologies, and feature matrices
   are deposited at Zenodo under DOI:
-  [10.5281/zenodo.21247258](https://doi.org/10.5281/zenodo.21247258).
+  [10.5281/zenodo.21247258](https://doi.org/10.5281/zenodo.21693996).
 - PDB structures are available from the RCSB Protein Data Bank (accession
   codes: 7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG).
 
