@@ -1,3 +1,4 @@
+cat > README.md << 'EOF'
 # Hierarchical organization of FcµR–IgM recognition across distinct IgM oligomeric states
 
 This repository contains the complete set of Python scripts, core modules,
@@ -157,3 +158,4 @@ regenerate all results from the raw data.
 
 ## License
 This project is licensed under the MIT License.
+EOF
