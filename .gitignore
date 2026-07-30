@@ -31,10 +31,17 @@ __pycache__/
 .ipynb_checkpoints/
 *.ipynb
 
-# Generated figures – but keep main_figures/ for preview
+# Keep main_figures/ tracked (remove the line that ignored it)
+# The following two lines were removing images, now we only ignore generated outputs outside main_figures/
+# We'll explicitly track main_figures/*.jpg and *.svg
+
+# Ignore generated figures outside main_figures/
 *.jpg
 *.png
 *.pdf
 *.svg
-!main_figures/scripts/
-main_figures/
+!main_figures/
+!main_figures/*.jpg
+!main_figures/*.svg
+!main_figures/*.png
+!main_figures/*.pdf
