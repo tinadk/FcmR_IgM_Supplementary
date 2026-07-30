@@ -75,7 +75,7 @@ local `output/` folder (not tracked by Git).
 
 | Item | Where to find it |
 |------|------------------|
-| MD simulation data (.xvg, .npy, .dat) | Zenodo (DOI: 10.5281/zenodo.21247258) |
+| MD simulation data (.xvg, .npy, .dat) | Zenodo (DOI: https://doi.org/10.5281/zenodo.21693996) |
 | PDB structure files | Zenodo or RCSB PDB (7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG) |
 | FoldX alanine scanning outputs (.fxout) | Supplementary material package (submitted with manuscript) |
 | Source data (.csv) for all figures | Supplementary material package |
@@ -86,7 +86,7 @@ local `output/` folder (not tracked by Git).
 ## Reproducing the analyses
 
 ### 1. Clone the repository
-git clone https://github.com/tinadk/FcmR_IgM_Supplementary.git
+git clone https://github.com/tinadk/FcmR_IgM_Supplementary
 cd FcmR_IgM_Supplementary
 
 ### 2. Install dependencies
@@ -94,7 +94,7 @@ Python ≥ 3.10 is required. Install the necessary packages:
 pip install numpy pandas matplotlib seaborn mdanalysis networkx biopython scipy
 
 ### 3. Obtain the data
-Download the Zenodo dataset (DOI: 10.5281/zenodo.21247258) and extract it.
+Download the Zenodo dataset (DOI: 10.5281/zenodo.21693996) and extract it.
 The dataset includes:
 - `data/` – MD analysis files (.xvg, .dat)
 - `MSM_final/archive/complete/data/` – MSM input files (.npy)
@@ -143,10 +143,10 @@ scripts, respectively.
 
 ## Data availability
 - All processed simulation trajectories, topologies, and feature matrices
-  are deposited at Zenodo under DOI:
-  [10.5281/zenodo.21247258](https://doi.org/10.5281/zenodo.21693996).
+  are deposited at Zenodo under DOI:https://doi.org/10.5281/zenodo.21693996).
 - PDB structures are available from the RCSB Protein Data Bank (accession
   codes: 7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG).
+
 
 ## Supplementary material package
 The supplementary material submitted to the journal (including the
