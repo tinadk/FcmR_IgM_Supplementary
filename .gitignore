@@ -36,4 +36,5 @@ __pycache__/
 *.png
 *.pdf
 *.svg
-!main_figures/
+!main_figures/scripts/
+main_figures/
