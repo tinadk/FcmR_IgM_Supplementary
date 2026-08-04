@@ -115,27 +115,27 @@ Generated figures (`.png`, `.jpg`, `.pdf`) and data tables (`.csv`,
 `.xlsx`) are saved in the `OUT_DIR` subfolder.
 
 ### Script‑to‑figure correspondence
-| Figure / Table | Script                                        |
-|----------------|-----------------------------------------------|
-| Fig.1A         | `Fig1A_RMSD_heatmap.py`                       |
-| Fig.2          | `Fig2_occurrence_barplot.py`                  |
-| Fig.3          | `Fig3_high_state_dependence.py`               |
-| Fig.4A/B       | `Fig4_stoichiometry.py`                       |
-| Fig.7A         | `Fig7A_stability_RMSD_Rg_SASA_combine.py`     |
-| Fig.7B         | `Fig7B_RMSF_chainC.py`                        |
-| Fig.7C         | `Fig7C_COM_distance.py`                       |
-| Fig.8A         | `Fig8A_TICA_FELs.py`                          |
-| Fig.8B         | `Fig8B_FELs.py`                               |
+| Figure / Table | Script                             |
+|----------------|------------------------------------|
+| Fig.1A         | `Fig1A_RMSD_heatmap.py`            |
+| Fig.2          | `Fig2_occurrence_barplot.py`       |
+| Fig.3          | `Fig3_high_state_dependence.py`    |
+| Fig.4A/B       | `Fig4_stoichiometry.py`            |
+| Fig.7A         | `Fig7A_stability_RMSD_Rg_SASA_combine.py` |
+| Fig.7B         | `Fig7B_RMSF_chainC.py`             |
+| Fig.7C         | `Fig7C_COM_distance.py`            |
+| Fig.8A         | `Fig8A_TICA_FELs.py`               |
+| Fig.8B         | `Fig8B_FELs.py`                    |
 | Fig.9A         | `Fig9A_equilibrium_macrostate_populations.py` |
-| Fig.9B         | `Fig9B_TPT_flux_networks.py`                  |
-| Fig.9C         | `Fig9C_MFPT.py`                               |
-| Fig.S1         | `FigS1_RMSF_both_chains.py`                   |
-| Fig.S2         | `FigS2_Hbond_lifetime_salt_survival.py`       |
-| Fig.S3         | `FigS3_DSSP_secondary_structure.py`           |
-| Fig.S4         | `FigS4_PCA_FELs.py`                           |
-| Fig.S5         | `FigS5_MSM_validation.py`  
-| Fig.S6         | `FigS6_Integrated_workflow.mermaid 
-| Table S2       | `TableS2_MSM_validation.py`                   |
+| Fig.9B         | `Fig9B_TPT_flux_networks.py`       |
+| Fig.9C         | `Fig9C_MFPT.py`                    |
+| Fig.S1         | `FigS1_RMSF_both_chains.py`        |
+| Fig.S2         | `FigS2_Hbond_lifetime_salt_survival.py` |
+| Fig.S3         | `FigS3_DSSP_secondary_structure.py` |
+| Fig.S4         | `FigS4_PCA_FELs.py`                |
+| Fig.S5         | `FigS5_MSM_validation.py`          |
+| Fig.S6         | `FigS6_Integrated_workflow.mermaid |
+| Table S2       | `TableS2_MSM_validation.py`        |
 
 Tables S3 and S4 are exported automatically by the Fig.9A and Fig.9C
 scripts, respectively.
