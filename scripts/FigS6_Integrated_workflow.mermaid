@@ -1,0 +1,33 @@
+%%{init: {'theme':'base', 'themeVariables': {'background':'#ffffff', 'fontFamily':'Arial', 'fontSize':'14px'}, 'flowchart': {'nodeSpacing': 80, 'rankSpacing': 80, 'curve': 'basis', 'wrappingWidth': 350}}}%%
+flowchart TD
+    INPUT["<strong>Previously reported IgM–FcμR complexes</strong><br/>(7YTE, 7YTC, 7YTD, 7YSG, 8BPE, 8BPF, 8BPG)"]
+
+    INPUT --> RMSD["<strong>Structural conservation of FcμR‑D1</strong><br/><i>• Pairwise Cα RMSD</i><br/><i>• Superposition across all states</i>"]
+    INPUT --> CONTACT["<strong>Interface contact analysis</strong><br/><i>• Contact recurrence</i><br/><i>• IgM form & stoichiometry‑dependent variation</i>"]
+    INPUT --> CONSURF["<strong>Evolutionary constraint analysis</strong><br/><i>• ConSurf conservation profiling</i><br/><i>• MAFFT sequence alignment</i>"]
+
+    CONTACT --> ENERGY["<strong>Energetic contribution analysis</strong><br/><i>• FoldX & PremPS alanine scanning</i><br/><i>• Residue‑wise ΔΔG computation</i>"]
+    CONSURF --> ENERGY
+
+    RMSD --> MD["<strong>200‑ns MD simulations</strong><br/>(WT, D111A, T110A+D111A, T60A+S63A)<br/><i>• Conformational dynamics sampling</i>"]
+    ENERGY --> MD
+
+    MD --> STAB["<strong>Dynamic stability</strong><br/><i>• RMSD, RMSF, Rg, SASA</i>"]
+    MD --> LAND["<strong>Conformational landscape</strong><br/><i>• TICA dimensionality reduction</i><br/><i>• Free‑energy landscapes</i>"]
+    MD --> MSM["<strong>Markov state model</strong><br/><i>• MSM (five macrostates)</i><br/><i>• TPT flux networks, MFPTs</i>"]
+
+    RMSD -.-> MODEL
+    STAB --> MODEL["<strong>Hierarchical recognition model</strong><br/><i>• Previously reported functional hotspots: Arg45, Phe67</i><br/><i>• Conserved structural determinants: Arg45, Thr60</i><br/><i>• Recurrent interaction network: Thr57, Ser63, Asn66, Lys69, Asn109, Thr110, Asp111</i><br/><i>• Variable evolutionary constraint: Phe67, Lys69, Asn109, Asp111, Arg112</i><br/><i>• Predicted structural sensitivity: Cys58</i><br/><i>(overlapping assignments allowed)</i>"]
+    LAND --> MODEL
+    MSM --> MODEL
+
+    MODEL --> OUTCOME["<strong>Conserved pre‑formed binding interface</strong><br/>maintained across dimeric, pentameric, and secretory IgM<br/><br/><strong>Stoichiometric plasticity</strong><br/>driven by epitope accessibility within the IgM architecture"]
+
+    classDef default fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000,text-align:left
+    classDef dashed fill:#ffffff,stroke:#000000,stroke-width:2px,color:#000000,text-align:left,stroke-dasharray: 5 5
+    classDef model fill:#ffffff,stroke:#1B2631,stroke-width:2.5px,color:#000000,text-align:left
+    classDef output fill:#ffffff,stroke:#7D6608,stroke-width:2px,color:#000000,text-align:left,font-weight:bold
+
+    class RMSD dashed
+    class MODEL model
+    class OUTCOME output

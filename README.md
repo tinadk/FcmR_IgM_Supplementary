@@ -5,7 +5,6 @@ and configuration files required to reproduce all main‑text and
 supplementary figures and tables in the associated manuscript.
 
 ## Repository structure
-
 .
 ├── config.py                          # Global configuration (paths, colours, DPI, matplotlib params)
 ├── core/                              # Shared computational modules
@@ -59,8 +58,7 @@ supplementary figures and tables in the associated manuscript.
 │   ├── Fig10D.jpg
 │   ├── Fig10E.jpg
 │   ├── Fig10F.jpg
-│   ├── Fig10G.jpg
-│   └── Fig11.svg
+│   └── Fig10G.jpg
 ├── README.md
 ├── LICENSE
 └── .gitignore                         # Ignore output/, *.xvg, *.npy, *.pdb, etc.
@@ -92,6 +90,7 @@ cd FcmR_IgM_Supplementary
 ### 2. Install dependencies
 Python ≥ 3.10 is required. Install the necessary packages:
 pip install numpy pandas matplotlib seaborn mdanalysis networkx biopython scipy
+
 
 ### 3. Obtain the data
 Download the Zenodo dataset (DOI: 10.5281/zenodo.21693996) and extract it.
@@ -134,8 +133,8 @@ Generated figures (`.png`, `.jpg`, `.pdf`) and data tables (`.csv`,
 | Fig.S2         | `FigS2_Hbond_lifetime_salt_survival.py`       |
 | Fig.S3         | `FigS3_DSSP_secondary_structure.py`           |
 | Fig.S4         | `FigS4_PCA_FELs.py`                           |
-| Fig.S5         | `FigS5_MSM_validation.py`                     |
-| Table S1       | `TableS1_global_MD_metrics.py`                |
+| Fig.S5         | `FigS5_MSM_validation.py`  
+| Fig.S6         | `FigS6_Integrated_workflow.mermaid 
 | Table S2       | `TableS2_MSM_validation.py`                   |
 
 Tables S3 and S4 are exported automatically by the Fig.9A and Fig.9C
