@@ -71,15 +71,15 @@ local `output/` folder (not tracked by Git).
 
 ## What is NOT in this repository
 
-| Item | Where to find it |
-|------|------------------|
-| MD simulation data (.xvg, .npy, .dat) | Zenodo (DOI: https://doi.org/10.5281/zenodo.21693996) |
+| Item | Where to find it                                              |
+|------|---------------------------------------------------------------|
+| MD simulation data (.xvg, .npy, .dat) | Zenodo (DOI: https://doi.org/10.5281/zenodo.21804586)         |
 | PDB structure files | Zenodo or RCSB PDB (7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG) |
-| FoldX alanine scanning outputs (.fxout) | Supplementary material package (submitted with manuscript) |
-| Source data (.csv) for all figures | Supplementary material package |
-| Supplementary tables (.xlsx) | Supplementary material package |
-| Supplementary figures (.jpg) | Supplementary material package |
-| Supplementary information PDF | Supplementary material package |
+| FoldX alanine scanning outputs (.fxout) | Supplementary material package (submitted with manuscript)    |
+| Source data (.csv) for all figures | Supplementary material package                                |
+| Supplementary tables (.xlsx) | Supplementary material package                                |
+| Supplementary figures (.jpg) | Supplementary material package                                |
+| Supplementary information PDF | Supplementary material package                                |
 
 ## Reproducing the analyses
 
@@ -142,7 +142,7 @@ scripts, respectively.
 
 ## Data availability
 - All processed simulation trajectories, topologies, and feature matrices
-  are deposited at Zenodo under DOI:https://doi.org/10.5281/zenodo.21693996).
+  are deposited at Zenodo under DOI:https://doi.org/10.5281/zenodo.21804586).
 - PDB structures are available from the RCSB Protein Data Bank (accession
   codes: 7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG).
 
