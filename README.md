@@ -1,4 +1,4 @@
-# Hierarchical organization of the FcµR–IgM interface across distinct IgM oligomeric states
+# Hierarchical organization of the immunoglobulin M receptor interface across distinct oligomeric states
 
 This repository contains the complete set of Python scripts, core modules,
 and configuration files required to reproduce all main‑text and
@@ -12,7 +12,6 @@ supplementary figures and tables in the associated manuscript.
 │   ├── compute.py                     # Trajectory trimming, equilibration
 │   └── stats.py                       # Bootstrap CI, etc.
 ├── scripts/                           # Analysis and plotting scripts
-│   ├── FoldX_input_config.txt         # FoldX alanine scanning run commands
 │   ├── Fig1A_RMSD_heatmap.py
 │   ├── Fig2_occurrence_barplot.py
 │   ├── Fig3_high_state_dependence.py
@@ -30,8 +29,62 @@ supplementary figures and tables in the associated manuscript.
 │   ├── FigS3_DSSP_secondary_structure.py
 │   ├── FigS4_PCA_FELs.py
 │   ├── FigS5_MSM_validation.py
+│   ├── FigS6_Integrated_workflow.mermaid   # Workflow diagram source
 │   ├── TableS1_global_MD_metrics.py
 │   └── TableS2_MSM_validation.py
+├── foldx_config/                      # FoldX alanine scanning commands and outputs
+│   ├── FoldX_input_config.txt         # Run commands for all 7 PDB structures
+│   └── outputs/
+│       ├── foldx_alanine_scanning_7ysg.fxout
+│       ├── foldx_alanine_scanning_7ytc.fxout
+│       ├── foldx_alanine_scanning_7ytd.fxout
+│       ├── foldx_alanine_scanning_7yte.fxout
+│       ├── foldx_alanine_scanning_8bpe.fxout
+│       ├── foldx_alanine_scanning_8bpf.fxout
+│       └── foldx_alanine_scanning_8bpg.fxout
+├── source_data/                       # Source data (CSV, FASTA) underlying every figure
+│   ├── Fig1A_RMSD_matrix.csv
+│   ├── Fig2_occurrence_barplot.csv
+│   ├── Fig3_state_comparison_high.csv
+│   ├── Fig4A_stoichiometry.csv
+│   ├── Fig4B_J_chain.csv
+│   ├── Fig5_MAFFT_alignment.fasta
+│   ├── Fig7A_Rg_time_series.csv
+│   ├── Fig7A_RMSD_time_series.csv
+│   ├── Fig7A_SASA_time_series.csv
+│   ├── Fig7B_RMSF_chainC_all_residues.csv
+│   ├── Fig7C_COM_bootstrap_CI.csv
+│   ├── Fig7C_COM_time_series.csv
+│   ├── Fig8A_overlay_data.csv
+│   ├── Fig8B_overlay_data.csv
+│   ├── Fig9B_TPT_edge_fluxes.csv
+│   ├── Fig9B_TPT_node_population_long.csv
+│   ├── Fig9B_TPT_node_population_matrix.csv
+│   ├── Fig9B_TPT_node_population_percent.csv
+│   ├── Fig9C_MFPT_all_systems.csv
+│   ├── FigS1_RMSF_both_chains.csv
+│   ├── FigS2_Hbond_lifetime.csv
+│   ├── FigS2_Saltbridge_survival.csv
+│   ├── FigS3_DSSP.csv
+│   ├── FigS4_PCA_FEL_2x2.csv
+│   ├── FigS5_CK.csv
+│   ├── FigS5_eigenvalues.csv
+│   ├── FigS5_ITS.csv
+│   └── FigS5_timescales.csv
+├── supplementary_materials/           # Supplementary material package (also submitted to journal)
+│   ├── supplementary_figures/
+│   │   ├── Fig_S1_RMSF_both_chains.jpg
+│   │   ├── Fig_S2_Hbond_salt_survival.jpg
+│   │   ├── Fig_S3_DSSP_heatmap.jpg
+│   │   ├── Fig_S4_PCA_FEL_2x2.jpg
+│   │   ├── Fig_S5_MSM_validation.jpg
+│   │   └── Fig_S6_Integrated_workflow.pdf
+│   ├── supplementary_tables/
+│   │   ├── TableS1_global_MD_metrics.xlsx
+│   │   ├── TableS2_MSM_validation.xlsx
+│   │   ├── TableS3_Macrostate_Populations.xlsx
+│   │   └── TableS4_MFPT.xlsx
+│   └── supplementary_information.pdf
 ├── main_figures/                      # High‑resolution main‑text figures (1600 dpi)
 │   ├── Fig1A.jpg
 │   ├── Fig1B.jpg
@@ -63,7 +116,6 @@ supplementary figures and tables in the associated manuscript.
 ├── LICENSE
 └── .gitignore                         # Ignore output/, *.xvg, *.npy, *.pdb, etc.
 
-
 All scripts import shared settings from `config.py` and use functions
 defined in the `core` module. Running any script from the project root
 creates publication‑quality figures and numerical data tables inside a
@@ -71,15 +123,15 @@ local `output/` folder (not tracked by Git).
 
 ## What is NOT in this repository
 
-| Item | Where to find it                                              |
-|------|---------------------------------------------------------------|
-| MD simulation data (.xvg, .npy, .dat) | Zenodo (DOI: https://doi.org/10.5281/zenodo.21804586)         |
+| Item | Where to find it                                             |
+|------|--------------------------------------------------------------|
+| MD simulation data (.xvg, .npy, .dat) | Zenodo (DOI: https://doi.org/10.5281/zenodo.21804586)        |
 | PDB structure files | Zenodo or RCSB PDB (7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG) |
-| FoldX alanine scanning outputs (.fxout) | Supplementary material package (submitted with manuscript)    |
-| Source data (.csv) for all figures | Supplementary material package                                |
-| Supplementary tables (.xlsx) | Supplementary material package                                |
-| Supplementary figures (.jpg) | Supplementary material package                                |
-| Supplementary information PDF | Supplementary material package                                |
+| FoldX alanine scanning outputs (.fxout) | foldx_config    |
+| Source data (.csv) for all figures | source_data                                |
+| Supplementary tables (.xlsx) | Supplementary material package                               |
+| Supplementary figures (.jpg) | Supplementary material package                               |
+| Supplementary information PDF | Supplementary material                              |
 
 ## Reproducing the analyses
 
@@ -134,7 +186,8 @@ Generated figures (`.png`, `.jpg`, `.pdf`) and data tables (`.csv`,
 | Fig.S3         | `FigS3_DSSP_secondary_structure.py` |
 | Fig.S4         | `FigS4_PCA_FELs.py`                |
 | Fig.S5         | `FigS5_MSM_validation.py`          |
-| Fig.S6         | `FigS6_Integrated_workflow.mermaid |
+| Fig.S6         | `FigS6_Integrated_workflow.mermaid` |
+| Table S1       | `TableS1_global_MD_metrics.py`      |
 | Table S2       | `TableS2_MSM_validation.py`        |
 
 Tables S3 and S4 are exported automatically by the Fig.9A and Fig.9C
@@ -145,14 +198,14 @@ scripts, respectively.
   are deposited at Zenodo under DOI:https://doi.org/10.5281/zenodo.21804586).
 - PDB structures are available from the RCSB Protein Data Bank (accession
   codes: 7YTE, 7YSG, 7YTC, 7YTD, 8BPE, 8BPF, 8BPG).
-
+- FoldX alanine scanning outputs and run commands, custom analysis scripts,
+  configuration files, source data, and the complete supplementary material
+  package are all contained within this GitHub repository.
 
 ## Supplementary material package
 The supplementary material submitted to the journal (including the
-supplementary information PDF, supplementary figures, supplementary tables,
-source data, and FoldX output files) is archived separately and is not part
-of this code repository. The scripts included here are sufficient to
-regenerate all results from the raw data.
+supplementary information PDF, supplementary figures, supplementary tables) is archived separately and is not part
+of this code repository. The scripts included here are sufficient to regenerate all results from the raw data.
 
 ## License
 This project is licensed under the MIT License.
