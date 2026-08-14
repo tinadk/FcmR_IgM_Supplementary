@@ -6,7 +6,7 @@
 # Output directory
 output/
 
-# Data files (stored in Zenodo)
+# Data files
 *.xvg
 *.npy
 *.dat
@@ -14,13 +14,6 @@ output/
 *.gro
 *.xtc
 *.trr
-
-# Supplementary material (submitted separately)
-supplementary_information.pdf
-supplementary_figures/
-supplementary_tables/
-source_data/
-foldx_config/
 
 # Python
 __pycache__/
@@ -31,17 +24,30 @@ __pycache__/
 .ipynb_checkpoints/
 *.ipynb
 
-# Keep main_figures/ tracked (remove the line that ignored it)
-# The following two lines were removing images, now we only ignore generated outputs outside main_figures/
-# We'll explicitly track main_figures/*.jpg and *.svg
-
-# Ignore generated figures outside main_figures/
+# Ignore generated figures outside tracked folders
 *.jpg
 *.png
 *.pdf
 *.svg
+
+# Keep main figures tracked
 !main_figures/
 !main_figures/*.jpg
 !main_figures/*.svg
 !main_figures/*.png
 !main_figures/*.pdf
+
+# Keep supplementary materials tracked
+!supplementary_materials/
+!supplementary_materials/supplementary_figures/
+!supplementary_materials/supplementary_figures/*.jpg
+!supplementary_materials/supplementary_figures/*.svg
+!supplementary_materials/supplementary_figures/*.png
+!supplementary_materials/supplementary_figures/*.pdf
+!supplementary_materials/supplementary_tables/
+!supplementary_materials/supplementary_tables/*.xlsx
+!supplementary_materials/supplementary_information.pdf
+
+# Keep source data and FoldX configuration
+!source_data/
+!foldx_config/
