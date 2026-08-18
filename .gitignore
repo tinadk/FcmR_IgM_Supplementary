@@ -31,23 +31,23 @@ __pycache__/
 *.svg
 
 # Keep main figures tracked
-!main_figures/
+!Main_Figures/
 !main_figures/*.jpg
 !main_figures/*.svg
 !main_figures/*.png
 !main_figures/*.pdf
 
 # Keep supplementary materials tracked
-!supplementary_materials/
-!supplementary_materials/supplementary_figures/
+!Supplementary_Materials_for_review/
+!Supplementary_Materials_for_review/Supplementary_Figures/
 !supplementary_materials/supplementary_figures/*.jpg
 !supplementary_materials/supplementary_figures/*.svg
 !supplementary_materials/supplementary_figures/*.png
 !supplementary_materials/supplementary_figures/*.pdf
-!supplementary_materials/supplementary_tables/
+!Supplementary_Materials_for_review/Supplementary_Tables/
 !supplementary_materials/supplementary_tables/*.xlsx
-!supplementary_materials/supplementary_information.pdf
+!Supplementary_Materials_for_review/Supplementary_Information.pdf
 
 # Keep source data and FoldX configuration
-!source_data/
-!foldx_config/
+!Source_Data/
+!FoldX_Config/
