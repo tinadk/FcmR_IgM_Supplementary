@@ -1,4 +1,4 @@
-# Hierarchical organization of the FcµR–IgM interface across distinct IgM oligomeric states
+# Hierarchical organization of FcµR–IgM recognition across distinct IgM oligomeric states
 
 This repository contains the complete set of Python scripts, core modules,
 and configuration files required to reproduce all main‑text and
