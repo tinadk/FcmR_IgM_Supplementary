@@ -24,30 +24,37 @@ __pycache__/
 .ipynb_checkpoints/
 *.ipynb
 
-# Ignore generated figures outside tracked folders
+# ----------------------------------------------------------------
+# Ignore generated images by default
+# ----------------------------------------------------------------
 *.jpg
 *.png
 *.pdf
 *.svg
 
-# Keep main figures tracked
-!Main_Figures/
-!main_figures/*.jpg
-!main_figures/*.svg
-!main_figures/*.png
-!main_figures/*.pdf
+# ----------------------------------------------------------------
+# But track these specific directories (override above rules)
+# ----------------------------------------------------------------
+# Main Figures (track everything inside)
+!Main_Figures/**/*.jpg
+!Main_Figures/**/*.png
+!Main_Figures/**/*.pdf
+!Main_Figures/**/*.svg
 
-# Keep supplementary materials tracked
-!Supplementary_Materials_for_review/
-!Supplementary_Materials_for_review/Supplementary_Figures/
-!supplementary_materials/supplementary_figures/*.jpg
-!supplementary_materials/supplementary_figures/*.svg
-!supplementary_materials/supplementary_figures/*.png
-!supplementary_materials/supplementary_figures/*.pdf
-!Supplementary_Materials_for_review/Supplementary_Tables/
-!supplementary_materials/supplementary_tables/*.xlsx
+# Supplementary Figures (track everything inside)
+!Supplementary_Materials_for_review/Supplementary_Figures/**/*.jpg
+!Supplementary_Materials_for_review/Supplementary_Figures/**/*.png
+!Supplementary_Materials_for_review/Supplementary_Figures/**/*.pdf
+!Supplementary_Materials_for_review/Supplementary_Figures/**/*.svg
+
+# Supplementary Tables (track everything inside)
+!Supplementary_Materials_for_review/Supplementary_Tables/**/*.xlsx
+
+# Supplementary Information PDF
 !Supplementary_Materials_for_review/Supplementary_Information.pdf
 
-# Keep source data and FoldX configuration
-!Source_Data/
-!FoldX_Config/
+# Source Data (track everything inside)
+!Source_Data/**/*
+
+# FoldX Config (track everything inside)
+!FoldX_Config/**/*

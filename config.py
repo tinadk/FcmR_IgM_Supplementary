@@ -25,7 +25,7 @@ COLORS = {
 }
 
 # ---------- Plotting parameters ----------
-DPI = 1400
+DPI = 1600
 FONT_FAMILY = 'Arial'
 FONT_SIZE = 9
 
@@ -33,11 +33,11 @@ MPL_RCPARAMS = {
     'font.family': FONT_FAMILY,
     'font.size': FONT_SIZE,
     'axes.labelsize': FONT_SIZE,
-    'axes.titlesize': FONT_SIZE + 1,
-    'xtick.labelsize': FONT_SIZE - 1,
-    'ytick.labelsize': FONT_SIZE - 1,
-    'legend.fontsize': FONT_SIZE - 1,
-    'figure.titlesize': FONT_SIZE + 2,
+    'axes.titlesize': FONT_SIZE,
+    'xtick.labelsize': FONT_SIZE,
+    'ytick.labelsize': FONT_SIZE,
+    'legend.fontsize': FONT_SIZE,
+    'figure.titlesize': FONT_SIZE,
     'savefig.dpi': DPI,
     'savefig.facecolor': 'white',
     'figure.facecolor': 'white',
@@ -50,19 +50,19 @@ EQUILIBRATION_NS = 10.0
 TIME_MAX_NS = 200.0
 
 # ---------- External data directories ----------
-PDB_DIR = Path("/Users/tina/PycharmProjects/PythonProject/source_file")
+PDB_DIR = DATA_DIR
 
-# ---------- MSM & TICA data directories (simplified Zenodo structure) ----------
+# ---------- MSM & TICA data directories ----------
 MSM_DIR = BASE_DIR / "msm"
 TICA_DIR = BASE_DIR / "tica"
 
 # ---------- PDB structure assignments ----------
 # Each entry provides:
-#   type: "dimer", "pentamer", or "sIgM"
+#   type: "dimer", "pentamer" or "sIgM"
 #   Fc: list of chain IDs for Fc region
 #   Ig: list of chain IDs for Ig domain (Cμ4)
 #   J: J-chain chain ID (None if absent)
-# Please verify chain IDs against the actual PDB headers; J-chain often appears as "J" or "K".
+#   SC: secretory component chain ID (None if absent)
 PDB_INFO = {
     # Dimers (no J-chain, no SC)
     "7YTE": {"type": "dimer",    "Fc": ["C","D"],                     "Ig": ["A","B"],                          "J": None, "SC": None},
@@ -75,3 +75,10 @@ PDB_INFO = {
     # sIgM (J-chain + SC present)
     "7YSG": {"type": "sIgM",     "Fc": ["U","R","S","V"],             "Ig": ["A","B","C","D","E","F","G","H","K","L"], "J": "J", "SC": "P"},
 }
+
+# ---------- Supplementary materials directories ----------
+SUPP_DIR = BASE_DIR / "Supplementary_Materials_for_review"
+SUPP_FIGURES_DIR = SUPP_DIR / "Supplementary_Figures"
+SUPP_TABLES_DIR = SUPP_DIR / "Supplementary_Tables"
+SUPP_INFO_PDF = SUPP_DIR / "Supplementary_Information.pdf"
+
